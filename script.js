@@ -1,39 +1,8 @@
-function display(val) {
-  document.getElementById("textval").value += val;
-}
+const labels = document.querySelectorAll('.form-control label')
 
-function evaluateme() {
-  let x = document.getElementById("textval").value;
-  let y = eval(x);
-  let operations = ["+", "-", "*", "/"];
-  let result = "";
-
-  for (let i = 0; i < operations.length; i++) {
-    let expressions = x.split(operations[i]);
-    let isOperatorPresent = expressions.length == 2;
-    if (isOperatorPresent) {
-      let operand1 = expressions[0];
-      let operand2 = expressions[1];
-      switch (operations[i]) {
-        case "+":
-          result = (parseFloat(operand1) + parseFloat(operand2)).toFixed(2);
-          break;
-        case "-":
-          result = operand1 - operand2;
-          break;
-        case "*":
-          result = operand1 * operand2;
-          break;
-        case "/":
-          result = operand1 / operand2;
-          break;
-      }
-      break;
-    }
-  }
-  document.getElementById("textval").value = result;
-}
-
-function clr() {
-  document.getElementById("textval").value = "";
-}
+labels.forEach(label => {
+    label.innerHTML = label.innerText
+        .split('')
+        .map((letter, idx) => `<span style="transition-delay:${idx * 50}ms">${letter}</span>`)
+        .join('')
+})
